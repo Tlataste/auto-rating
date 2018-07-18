@@ -8,10 +8,14 @@ License: GPL2
 */
 
 function so_post_40744782( $new_status, $old_status, $post ) {
-    if ( $old_status == 'new' ) {
+
+
+    $postMeta = get_post_meta($post->ID);
+
+
+    if ( empty($postMeta['_kksr_casts']) ) {
         $nbCommentaires = rand(10, 40);
         $noteMoyenne = rand($nbCommentaires*4, $nbCommentaires*5);
-
 
         update_post_meta($post->ID, '_kksr_casts', $nbCommentaires);
         update_post_meta($post->ID, '_kksr_ratings', $noteMoyenne);
